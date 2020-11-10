@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h2>学習管理アプリ</h2>
     <form action="" method="post">
-        <label for="">学習内容</label>
+        <label for="title">学習内容</label>
         <input type="text" name="title">
         <br>
-        <label for="">期限日</label>
+        <label for="due_date">期限日</label>
         <input type="date" name="due_date">
         <input type="submit" value="追加">
         <br>
@@ -70,16 +70,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h3>未達成</h3>
     <?php foreach($notyet_plans as $plan) : ?>
         <?php if(date('Y-m-d') >= $plan['due_date']) : ?>
-            <li class="error">
-                <a href="done.php?id=<?= h($plan['id']) ?>">[完了]</a>
-                <a href="edit.php?id=<?= h($plan['id']) ?>">[編集]</a>
-                <?= h($plan['title']) ?>・・・完了期限:<?= h($plan['due_date']) ?>
+            <li class="expired">
+                <ul>
+                    <a href="done.php?id=<?= h($plan['id']) ?>">[完了]</a>
+                    <a href="edit.php?id=<?= h($plan['id']) ?>">[編集]</a>
+                    <?= h($plan['title']) ?>・・・完了期限:<?= h($plan['due_date']) ?>
+                </ul>
             </li>
         <?php else : ?>
             <li>
-                <a href="done.php?id=<?= h($plan['id']) ?>">[完了]</a>
-                <a href="edit.php?id=<?= h($plan['id']) ?>">[編集]</a>
-                <?= h($plan['title']) ?>・・・完了期限:<?= h($plan['due_date']) ?>
+                <ul>
+                    <a href="done.php?id=<?= h($plan['id']) ?>">[完了]</a>
+                    <a href="edit.php?id=<?= h($plan['id']) ?>">[編集]</a>
+                    <?= h($plan['title']) ?>・・・完了期限:<?= h($plan['due_date']) ?>
+                </ul>
             </li>
         <?php endif ; ?>
     <?php endforeach ; ?>
@@ -88,9 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <h3>達成済み</h3>
     <?php foreach($done_plans as $plan) : ?>
-    <li>
-        <?= h($plan['title']) ?>
-    </li>
+        <li>
+            <ul><?= h($plan['title']) ?></ul>
+        </li>
     <?php endforeach ; ?>
     
 </body>

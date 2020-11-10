@@ -57,17 +57,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h2>編集</h2>
     <form action="" method="post">
-        <label for="">学習内容</label>
+        <label for="title">学習内容</label>
         <input type="text" name="title" value="<?= h($task['title']) ?>">
         <br>
-        <label for="">期限日</label>
+        <label for="due_date">期限日</label>
         <input type="date" name="due_date" value="<?= h($task['due_date']) ?>">
         <input type="submit" value="追加">
         <br>
         
         <?php if(!$errors == '') : ?>
             <?php foreach ($errors as $error) : ?>
-            <li class="error"><?= $error ?></li>
+            <li class="error">
+                <ul><?= $error ?></ul>
+            </li>
             <?php endforeach ; ?>
         <?php endif ; ?>
         <a href="index.php">戻る</a>
