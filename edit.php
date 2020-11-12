@@ -62,14 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <label for="due_date">期限日</label>
         <input type="date" name="due_date" value="<?= h($task['due_date']) ?>">
-        <input type="submit" value="追加">
+        <input type="submit" value="編集">
         <br>
         
         <?php if(!$errors == '') : ?>
             <?php foreach ($errors as $error) : ?>
-            <li class="error">
-                <ul><?= $error ?></ul>
-            </li>
+            <ul>
+                <li class="error">
+                    <?= $error ?>
+                </li>
+            </ul>
             <?php endforeach ; ?>
         <?php endif ; ?>
         <a href="index.php">戻る</a>
