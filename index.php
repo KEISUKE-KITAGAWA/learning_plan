@@ -68,20 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif ; ?>
     </form>
     <h3>未達成</h3>
-    <?php foreach($notyet_plans as $plan) : ?>
-        <ul>
+    <ul>
+        <?php foreach($notyet_plans as $plan) : ?>
             <?php if(date('Y-m-d') >= $plan['due_date']) : ?>
-            <li class="expired">
+                <li class="expired">
             <?php else : ?>
-            <li>
+                <li>
             <?php endif ; ?>
-                <a href="done.php?id=<?= h($plan['id']) ?>">[完了]</a>
-                <a href="edit.php?id=<?= h($plan['id']) ?>">[編集]</a>
-                <?= h($plan['title']) ?>・・・完了期限:<?= h($plan['due_date']) ?>
-            </li>
-        </ul>
-        
-    <?php endforeach ; ?>
+                    <a href="done.php?id=<?= h($plan['id']) ?>">[完了]</a>
+                    <a href="edit.php?id=<?= h($plan['id']) ?>">[編集]</a>
+                    <?= h($plan['title']) ?>・・・完了期限:<?= h($plan['due_date']) ?>
+                </li>
+        <?php endforeach ; ?>
+    </ul>
     
     <br>
     
